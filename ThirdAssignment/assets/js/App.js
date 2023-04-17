@@ -1,4 +1,3 @@
-// fetch API function
 (async function () {
     const response = await fetch('./assets/API/data.json');
     const result = await response.json();
@@ -12,27 +11,27 @@
 
     // display search item
     const displaySearch = (data) => {
-        console.log(data);
-        // data.forEach((movie, index) => {
-        //     const item = `
-        //     <tr key=${index}>
-        //     <td>${index + 1}</td>
-        //     <td>
-        //         <div class='d-flex align-items-center'>
-        //             <img src=${`https://image.tmdb.org/t/p/w45/${movie.poster_path}`} alt=${movie.poster_path}>
-        //             <div class='discription ps-3'>
-        //                 <h6 class='movie_title text-primary mb-1'>${movie.title}</h6>
-        //                 <span class='badge text-bg-primary me-2 px-3'>${movie.certification}</span>
-        //                 <span class='genre'>Action, Science Fiction</span>
-        //                 <span class='runtime'>113</span>
-        //             </div>
-        //         </div>
-        //     </td>
-        //     <td>${movie.release_date.substr(0, 4)}</td>
-        // </tr>
-        //     `;
-        //     display_movie.appendChild(item);
-        // })
+        display_movie.innerHTML = '';
+        data.forEach((movie, index) => {
+            const item = `
+            <tr key=${index}>
+            <td>${index + 1}</td>
+            <td>
+                <div class='d-flex align-items-center'>
+                    <img src=${`https://image.tmdb.org/t/p/w45/${movie.poster_path}`} alt=${movie.poster_path}>
+                    <div class='discription ps-3'>
+                        <h6 class='movie_title text-primary mb-1'>${movie.title}</h6>
+                        <span class='badge text-bg-primary me-2 px-3'>${movie.certification}</span>
+                        <span class='genre'>Action, Science Fiction</span>
+                        <span class='runtime'>113</span>
+                    </div>
+                </div>
+            </td>
+            <td>${movie.release_date.substr(0, 4)}</td>
+        </tr>
+            `;
+            display_movie.innerHTML += item;
+        })
     }
 
     const search_Function = () => {
@@ -49,4 +48,4 @@
     }
     document.getElementById('search_movie_form').addEventListener('change', search_Function);
 
-})()
+})();
